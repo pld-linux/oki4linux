@@ -1,5 +1,5 @@
 Summary:	Okipage 4w/4w+/8w printer driver
-Summary(pl):	Driver do drukarek Okipage 4w/4w+/8w
+Summary(pl):	Sterownik do drukarek Okipage 4w/4w+/8w
 Name:		oki4linux
 Version:	2.1gst
 Release:	0.1
@@ -10,7 +10,7 @@ Source0:	http://www.linuxprinting.org/download/printing/%{name}-%{version}.tar.g
 # Source0-md5:	54c85488d2489d2431ce518916b20515
 Source1:	%{name}.init
 Patch0:		%{name}-daemon.patch
-URL:		http://www.linuxprinting.org
+URL:		http://www.linuxprinting.org/
 PreReq:		rc-scripts
 Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -19,7 +19,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Okipage 4w/4w+/8w printer driver.
 
 %description -l pl
-Sterownik do drukarki Okipage 4w/4w+/8w.
+Sterownik do drukarek Okipage 4w/4w+/8w.
 
 %prep
 %setup -q -n %{name}
@@ -28,16 +28,15 @@ Sterownik do drukarki Okipage 4w/4w+/8w.
 %build
 cd src
 rm -f oki4drv
-%{__cc} %{rpmcflags} -o oki4drv main.c
-cd ..
+%{__cc} %{rpmldflags} %{rpmcflags} -o oki4drv main.c
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT{%{_sbindir},/etc/rc.d/init.d,%{_mandir}/man1,/dev}
-mv -f src/oki4drv	$RPM_BUILD_ROOT%{_sbindir}
-mv -f src/oki4daemon	$RPM_BUILD_ROOT%{_sbindir}
-mv -f src/oki4drv.man	$RPM_BUILD_ROOT%{_mandir}/man1/oki4drv.1
+
+install src/oki4drv	$RPM_BUILD_ROOT%{_sbindir}
+install src/oki4daemon	$RPM_BUILD_ROOT%{_sbindir}
+install src/oki4drv.man	$RPM_BUILD_ROOT%{_mandir}/man1/oki4drv.1
 install %{SOURCE1}	$RPM_BUILD_ROOT/etc/rc.d/init.d/oki4daemon
 touch $RPM_BUILD_ROOT/dev/oki4drv
 
