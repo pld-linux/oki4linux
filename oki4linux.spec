@@ -4,7 +4,7 @@ Name:		oki4linux
 Version:	2.1gst
 Release:	0.1
 Epoch:		0
-License:	distribuatable (see COPYING)
+License:	distributable (see COPYING)
 Group:		Daemons
 Source0:	http://www.linuxprinting.org/download/printing/%{name}-%{version}.tar.gz
 # Source0-md5:	54c85488d2489d2431ce518916b20515
