@@ -1,0 +1,93 @@
+#!/bin/sh
+#
+# oki4daemon	oki4daemon - printer driver daemon
+#
+# chkconfig:	2345 11 89
+#
+# description: oki4daemon - daemon developed by Grant Taylor to \
+#              support the OKI 4w and compatible winprinters. \
+#              These printers have high requirements concerning \
+#              timing and therefore one cannot use their driver \
+#              directly out of a printer spooler (CUPS, LPD). To \
+#              solve this problem, one lets the spooler send the \
+#              job to this deamon. Activate this daemon when you \
+#              have one of these printers and set up a CUPS queue \
+#              for your printer with "oki4w_install". Do not \
+#              connect an OKI winprinter to a machine with high \
+#              loads or high security demands.
+#
+
+
+# Source function library
+. /etc/rc.d/init.d/functions
+
+# Get service config - may override defaults
+[ -f /etc/sysconfig/oki4daemon ] && . /etc/sysconfig/oki4daemon
+
+# See how we were called.
+case "$1" in
+  start)
+	# Check if the service is already running?
+	if [ ! -f /var/lock/subsys/oki4daemon ]; then
+		# show "Starting %s service" oki4daemon
+		msg_starting oki4daemon
+		daemon oki4daemon
+		RETVAL=$?
+		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/oki4daemon
+	else
+		# show "%s service is already running." oki4daemon
+		msg_already_running oki4daemon
+	fi
+	;;
+  stop)
+	if [ -f /var/lock/subsys/oki4daemon ]; then
+		# Stop daemons.
+		# show "Stopping %s service" oki4daemon
+		msg_stopping oki4daemon
+		killproc oki4daemon
+		rm -f /var/lock/subsys/oki4daemon
+	else
+		# show "%s service is not running." oki4daemon
+		msg_not_running oki4daemon
+	fi
+	;;
+  restart)
+	$0 stop
+	$0 start
+	exit $?
+	;;
+  reload)
+	if [ -f /var/lock/subsys/oki4daemon ]; then
+		# show "Reload %s service" oki4daemon
+		msg_reloading oki4daemon
+		killproc oki4daemon -HUP
+		RETVAL=$?
+	else
+		# show "%s service is not running." oki4daemon
+		msg_not_running oki4daemon >&2
+		RETVAL=7
+	fi
+	;;
+  force-reload)
+	# if program allows reloading without stopping
+	$0 reload
+
+	# or if it doesn't
+	$0 restart
+
+	exit $?
+	;;
+  status)
+	status oki4daemon
+	RETVAL=$?
+	;;
+  *)
+	# show "Usage: %s {start|stop|restart|reload|force-reload|status}"
+	msg_usage "$0 {start|stop|restart|reload|force-reload|status}"
+	exit 3
+esac
+
+exit $RETVAL
+
+# This must be last line !
+# vi:syntax=sh:tw=78:ts=8:sw=4
