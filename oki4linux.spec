@@ -39,6 +39,8 @@ install -d $RPM_BUILD_ROOT{%{_sbindir},/etc/rc.d/init.d,%{_mandir}/man1,/dev}
 install src/oki4drv	$RPM_BUILD_ROOT%{_sbindir}
 install src/oki4daemon	$RPM_BUILD_ROOT%{_sbindir}
 install src/oki4drv.man	$RPM_BUILD_ROOT%{_mandir}/man1/oki4drv.1
+install src/README.oki4daemon	./
+install src/readback.c	doc/
 install %{SOURCE1}	$RPM_BUILD_ROOT/etc/rc.d/init.d/oki4daemon
 touch $RPM_BUILD_ROOT/dev/oki4drv
 
@@ -63,7 +65,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog COPYING README crack doc samples
+%doc ChangeLog COPYING README README.oki4daemon crack doc samples
 %attr(755,root,root) %{_sbindir}/*
 %attr(754,root,root) /etc/rc.d/init.d/*
 %{_mandir}/man?/*
