@@ -1,0 +1,24 @@
+diff -Nura oki4linux.bef/src/main.c oki4linux/src/main.c
+--- oki4linux.bef/src/main.c	2004-03-07 23:58:13.000000000 +0100
++++ oki4linux/src/main.c	2004-03-07 23:59:30.000000000 +0100
+@@ -98,7 +98,7 @@
+  * Global data set up by command line options.
+  */
+ static int verbose = 0;
+-static int size_index = 4;	/* Letter paper is default */
++static int size_index = 0;	/* A4 paper is default */
+ static char *output_name = NULL;	/* default output device file */
+ 
+ static enum {
+diff -Nura oki4linux.bef/src/oki4daemon oki4linux/src/oki4daemon
+--- oki4linux.bef/src/oki4daemon	2004-03-07 23:58:13.000000000 +0100
++++ oki4linux/src/oki4daemon	2004-03-08 00:01:29.000000000 +0100
+@@ -97,7 +97,7 @@
+     my ($papersize, $darkness, $paperweight, $graphics, $manual);
+ 
+     # override default in oki4drv
+-    $papersize = 'letter';
++    $papersize = 'a4';
+ 
+     # Step 2: read beginning of job, until no @FAKEOKI options
+     my $firstline;
