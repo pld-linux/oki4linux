@@ -1,5 +1,5 @@
-Summary:	Okipage 4w/4w+/8w printer driver
-Summary(pl):	Sterownik do drukarek Okipage 4w/4w+/8w
+Summary:	OKIPAGE (4w, 4w Plus, 6w, 8w, 8w Lite, 8z), OL400w printer driver
+Summary(pl):	Sterownik do drukarek OKIPAGE (4w, 4w Plus, 6w, 8w, 8w Lite, 8z), OL400w
 Name:		oki4linux
 Version:	2.1gst
 Release:	0.1
@@ -16,10 +16,12 @@ Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Okipage 4w/4w+/8w printer driver.
+User space based driver for OKIPAGE (4w, 4w Plus, 6w, 8w, 8w Lite, 8z), OL400w
+printers.
 
 %description -l pl
-Sterownik do drukarek Okipage 4w/4w+/8w.
+Sterownik do drukarek OKIPAGE (4w, 4w Plus, 6w, 8w, 8w Lite, 8z), OL400w
+zaimplementowany w przestrzeni u¿ytkownika.
 
 %prep
 %setup -q -n %{name}
