@@ -1,5 +1,5 @@
-Summary:	Okipage 4w/4w+ printer driver
-Summary(pl):	Driver do drukarki Okipage 4w/4w+
+Summary:	Okipage 4w/4w+/8w printer driver
+Summary(pl):	Driver do drukarek Okipage 4w/4w+/8w
 Name:		oki4linux
 Version:	2.1gst
 Release:	0.1
@@ -16,10 +16,10 @@ Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Okipage 4w/4w+ printer driver.
+Okipage 4w/4w+/8w printer driver.
 
 %description -l pl
-Sterownik do drukarki Okipage 4w/4w+.
+Sterownik do drukarki Okipage 4w/4w+/8w.
 
 %prep
 %setup -q -n %{name}
