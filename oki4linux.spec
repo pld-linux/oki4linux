@@ -10,9 +10,11 @@ Source0:	http://www.linuxprinting.org/download/printing/%{name}-%{version}.tar.g
 # Source0-md5:	54c85488d2489d2431ce518916b20515
 Source1:	%{name}.init
 Patch0:		%{name}-daemon.patch
+Patch1:		%{name}-a4.patch
 URL:		http://www.linuxprinting.org/
 PreReq:		rc-scripts
 Requires(post,preun):	/sbin/chkconfig
+Requires:	ghostscript
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -26,6 +28,7 @@ zaimplementowany w przestrzeni u¿ytkownika.
 %prep
 %setup -q -n %{name}
 %patch0 -p1
+%patch1 -p1
 
 %build
 cd src
