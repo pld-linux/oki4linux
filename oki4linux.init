@@ -29,25 +29,21 @@ case "$1" in
   start)
 	# Check if the service is already running?
 	if [ ! -f /var/lock/subsys/oki4daemon ]; then
-		# show "Starting %s service" oki4daemon
 		msg_starting oki4daemon
 		daemon oki4daemon
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/oki4daemon
 	else
-		# show "%s service is already running." oki4daemon
 		msg_already_running oki4daemon
 	fi
 	;;
   stop)
 	if [ -f /var/lock/subsys/oki4daemon ]; then
 		# Stop daemons.
-		# show "Stopping %s service" oki4daemon
 		msg_stopping oki4daemon
 		killproc oki4daemon
 		rm -f /var/lock/subsys/oki4daemon
 	else
-		# show "%s service is not running." oki4daemon
 		msg_not_running oki4daemon
 	fi
 	;;
@@ -58,12 +54,10 @@ case "$1" in
 	;;
   reload)
 	if [ -f /var/lock/subsys/oki4daemon ]; then
-		# show "Reload %s service" oki4daemon
 		msg_reloading oki4daemon
 		killproc oki4daemon -HUP
 		RETVAL=$?
 	else
-		# show "%s service is not running." oki4daemon
 		msg_not_running oki4daemon >&2
 		RETVAL=7
 	fi
@@ -82,7 +76,6 @@ case "$1" in
 	RETVAL=$?
 	;;
   *)
-	# show "Usage: %s {start|stop|restart|reload|force-reload|status}"
 	msg_usage "$0 {start|stop|restart|reload|force-reload|status}"
 	exit 3
 esac
