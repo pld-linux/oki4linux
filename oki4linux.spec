@@ -1,5 +1,5 @@
 Summary:	OKIPAGE (4w, 4w Plus, 6w, 8w, 8w Lite, 8z), OL400w printer driver
-Summary(pl.UTF-8):   Sterownik do drukarek OKIPAGE (4w, 4w Plus, 6w, 8w, 8w Lite, 8z), OL400w
+Summary(pl.UTF-8):	Sterownik do drukarek OKIPAGE (4w, 4w Plus, 6w, 8w, 8w Lite, 8z), OL400w
 Name:		oki4linux
 Version:	2.1gst
 Release:	0.1
