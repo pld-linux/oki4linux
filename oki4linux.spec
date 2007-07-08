@@ -12,7 +12,8 @@ Source1:	%{name}.init
 Patch0:		%{name}-daemon.patch
 Patch1:		%{name}-a4.patch
 URL:		http://www.linuxprinting.org/
-PreReq:		rc-scripts
+BuildRequires:	rpmbuild(macros) >= 1.268
+Requires:	rc-scripts
 Requires(post,preun):	/sbin/chkconfig
 Requires:	ghostscript
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -52,17 +53,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add oki4daemon
-if [ -f /var/lock/subsys/oki4daemon ]; then
-	/etc/rc.d/init.d/oki4daemon restart 1>&2
-else
-	echo "Run \"/etc/rc.d/init.d/oki4daemon start\" to start oki4daemon daemon."
-fi
+%service oki4daemon restart
 
 %preun
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/oki4daemon ]; then
-		/etc/rc.d/init.d/oki4daemon stop 1>&2
-	fi
+	%service oki4daemon stop
 	/sbin/chkconfig --del oki4daemon
 fi
 
