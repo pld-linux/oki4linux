@@ -19,12 +19,12 @@ Requires:	ghostscript
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-User space based driver for OKIPAGE (4w, 4w Plus, 6w, 8w, 8w Lite, 8z), OL400w
-printers.
+User space based driver for OKIPAGE (4w, 4w Plus, 6w, 8w, 8w Lite,
+8z), OL400w printers.
 
 %description -l pl.UTF-8
-Sterownik do drukarek OKIPAGE (4w, 4w Plus, 6w, 8w, 8w Lite, 8z), OL400w
-zaimplementowany w przestrzeni użytkownika.
+Sterownik do drukarek OKIPAGE (4w, 4w Plus, 6w, 8w, 8w Lite, 8z),
+OL400w zaimplementowany w przestrzeni użytkownika.
 
 %prep
 %setup -q -n %{name}
